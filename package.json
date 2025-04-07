@@ -1,0 +1,38 @@
+{
+  "name": "custom-x",
+  "version": "1.0.0",
+  "description": "A library to facilitate the storage of javascript objects in Custom XML Parts.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/custom-x.git"
+  },
+  "keywords": [
+    "add-in",
+    "customxml",
+    "customxmlparts",
+    "excel",
+    "office-js",
+    "office",
+    "powerpoint",
+    "typescript",
+    "word",
+    "xml"
+  ],
+  "author": "D'Arcy Rittich",
+  "license": "MIT",
+  "dependencies": {
+    "fast-xml-parser": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/office-js": "^1.0.488",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.3.1",
+    "typescript": "^5.0.0"
+  }
+}
