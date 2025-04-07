@@ -16,7 +16,7 @@ const xmlParser = new XMLParser();
  *
  * @returns A promise that resolves when the operation is complete.
  */
-export async function setCustomXmlPartValue(key: string, value: any): Promise<void> {
+export async function setCustomXmlPartByValue(key: string, value: any): Promise<void> {
 	const xmlValue = xmlBuilder.build(value);
 
 	const namespace = getNameSpace(key);
@@ -65,8 +65,7 @@ export async function getCustomXmlPartValue(key: string): Promise<any | null> {
 	return new Promise((resolve, reject) => {
 		xmlPart.getXmlAsync((result) => {
 			if (result.status != Office.AsyncResultStatus.Succeeded) {
-				console.error("Error getting custom XML part XML:", result.error);
-				reject(new Error(result.error.message));
+				reject(new Error(`Error getting XML: ${result.error.message}`));
 			} else {
 				const xmlValue = result.value;
 				const parsedValue = xmlParser.parse(xmlValue);
@@ -102,8 +101,7 @@ export async function removeCustomXmlPart(key: string): Promise<void> {
 	await new Promise<void>((resolve, reject) => {
 		xmlPart.deleteAsync((result) => {
 			if (result.status != Office.AsyncResultStatus.Succeeded) {
-				console.error("Error deleting custom XML part:", result.error);
-				reject(new Error(result.error.message));
+				reject(new Error(`Error deleting custom XML part: ${result.error.message}`));
 			} else {
 				resolve();
 			}
@@ -133,15 +131,13 @@ async function getCustomXmlPartByNameSpace(namespace: string): Promise<Office.Cu
 					resolve(null);
 				}
 				else if (result.value.length > 1) {
-					console.error("More than one custom XML part found for the namespace:", namespace);
 					reject(new Error("More than one custom XML part found for the namespace: " + namespace));
 				}
 				else {
 					resolve(result.value[0]);
 				}
 			} else {
-				console.error("Error getting custom XML parts:", result.error);
-				reject(result.error);
+				reject(new Error(`Error getting custom XML parts: ${result.error.message}`));
 			}
 		});
 	});
@@ -164,8 +160,7 @@ async function addCustomXmlPartByNameSpace(namespace: string, xmlValue: string):
 
 	return await Office.context.document.customXmlParts.addAsync(xmlWithNamespace, (result) => {
 		if (result.status != Office.AsyncResultStatus.Succeeded) {
-			console.error("Error adding custom XML part:", result.error);
-			throw new Error(result.error.message);
+			throw new Error(`Error adding custom XML part: ${result.error.message}`);
 		}
 	});
 }
@@ -188,8 +183,7 @@ async function deleteCustomXmlPartByNameSpace(namespace: string): Promise<Office
 			if (result.status === Office.AsyncResultStatus.Succeeded) {
 				resolve(result.value);
 			} else {
-				console.error("Error getting custom XML parts:", result.error);
-				reject(result.error);
+				reject(new Error(`Error getting custom XML parts: ${result.error.message}`));
 			}
 		});
 	});

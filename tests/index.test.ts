@@ -1,5 +1,5 @@
 import {
-    setCustomXmlPartValue,
+    setCustomXmlPartByValue,
     getCustomXmlPartValue,
     removeCustomXmlPart,
 } from '../src/index';
@@ -30,7 +30,7 @@ afterEach(() => {
 });
 
 describe("custom-x library", () => {
-    test("setCustomXmlPartValue adds a new custom XML part", async () => {
+    test("setCustomXmlPartByValue adds a new custom XML part", async () => {
         // Simulate that no existing custom XML part is found.
         (global.Office.context.document.customXmlParts.getByNamespaceAsync as jest.Mock).mockImplementation(
             (namespace: string, callback: (result: any) => void) => {
@@ -45,7 +45,7 @@ describe("custom-x library", () => {
             }
         );
 
-        await expect(setCustomXmlPartValue("test key", { dummy: true })).resolves.toBeUndefined();
+        await expect(setCustomXmlPartByValue("test key", { dummy: true })).resolves.toBeUndefined();
     });
 
     test("getCustomXmlPartValue returns parsed value", async () => {
