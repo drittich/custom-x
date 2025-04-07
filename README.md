@@ -1,16 +1,17 @@
-# custom-x
+# Custom-X
 
-A library to facilitate the storage of JavaScript objects in [Office Custom XML Parts](https://docs.microsoft.com/en-us/office/dev/add-ins/develop/working-with-customxml).
+Custom-X is a TypeScript library that simplifies storing JavaScript objects in Office Custom XML parts. It provides functions to add, retrieve, parse, and remove custom XML data associated with a unique key.
 
 ## Features
 
-- Serialize JavaScript objects to XML using [fast-xml-parser](https://github.com/NaturalIntelligence/fast-xml-parser).
-- Add, retrieve, and delete custom XML parts in Office documents.
-- Fully written in TypeScript with strict type checking.
+- **Store Data as XML**: Convert JavaScript objects to XML and encapsulate them in a custom XML part.
+- **Retrieve & Parse**: Fetch and parse stored XML data to retrieve JavaScript objects.
+- **Namespace Handling**: Sanitize and use keys as namespaces ensuring consistency.
+- **Seamless Office Integration**: Works with Office.js to manage Custom XML Parts in Office documents.
 
 ## Installation
 
-Install via npm:
+Install the package via npm:
 
 ```sh
 npm install custom-x
@@ -18,35 +19,65 @@ npm install custom-x
 
 ## Usage
 
-Import and use the library in your project:
+Below is a simple example:
 
 ```ts
-import { setCustomXmlPart, getCustomXmlPart, removeCustomXmlPart } from 'custom-x';
+import { setCustomXmlPartByValue, getCustomXmlPartValue, removeCustomXmlPart } from 'custom-x';
 
-// Set a custom XML part
-setCustomXmlPart('exampleKey', { data: 123 })
-  .then(() => console.log('Custom XML part set'))
-  .catch(console.error);
+// Set a custom XML part.
+await setCustomXmlPartByValue("myData", { foo: "bar" });
 
-// Retrieve a custom XML part
-getCustomXmlPart('exampleKey')
-  .then(xmlPart => console.log('Retrieved XML part:', xmlPart))
-  .catch(console.error);
+// Retrieve and parse the custom XML part.
+const myData = await getCustomXmlPartValue("myData");
+console.log(myData); // { foo: "bar" }
 
-// Remove a custom XML part
-removeCustomXmlPart('exampleKey')
-  .then(() => console.log('Custom XML part removed'))
-  .catch(console.error);
+// Remove the custom XML part.
+await removeCustomXmlPart("myData");
 ```
 
-## Building the Library
+## API Reference
 
-Compile the TypeScript source code with:
+- **setCustomXmlPartByValue(key: string, value: any): Promise<void>**  
+  Converts a JavaScript object into XML and stores it as a custom XML part. If a part with the same key exists, it is first removed.
+
+- **getCustomXmlPart(key: string): Promise<Office.CustomXmlPart | null>**  
+  Retrieves the custom XML part associated with the key.
+
+- **getCustomXmlPartValue(key: string): Promise<any | null>**  
+  Retrieves and parses the XML content of the custom XML part back into a JavaScript object.
+
+- **removeCustomXmlPart(key: string): Promise<void>**  
+  Deletes the custom XML part corresponding to the specified key.
+
+## Building & Testing
+
+This project uses TypeScript and Jest for testing.
+
+To build the project, run:
 
 ```sh
 npm run build
 ```
 
+To execute the tests, run:
+
+```sh
+npm test
+```
+
+The tests can be found in the [tests directory](c:\Users\darcy\source\repos\_Libs\Custom-X\tests\index.test.ts).
+
 ## License
 
-MIT
+Distributed under the MIT License. See [LICENSE](c:\Users\darcy\source\repos\_Libs\Custom-X\LICENSE) for more information.
+
+## Contributing
+
+Contributions are welcome! Please open issues and submit pull requests for bug fixes or feature enhancements.
+
+## Support
+
+For support, please refer to the [GitHub repository](https://github.com/yourusername/custom-x.git).
+
+---
+Custom-X © 2025 D'Arcy Rittich
