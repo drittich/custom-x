@@ -2,7 +2,7 @@ import {
     setCustomXmlPartByValue,
     getCustomXmlPartValue,
     removeCustomXmlPart,
-} from '../src/index';
+} from '../index';
 
 // Create minimal mocks for Office objects and statuses.
 declare var global: any;
