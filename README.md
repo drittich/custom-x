@@ -77,7 +77,7 @@ Contributions are welcome! Please open issues and submit pull requests for bug f
 
 ## Support
 
-For support, please refer to the [GitHub repository](https://github.com/yourusername/custom-x.git).
+For support, please refer to the [GitHub repository](https://github.com/drittich/custom-x).
 
 ---
 Custom-X © 2025 D'Arcy Rittich

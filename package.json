@@ -1,6 +1,6 @@
 {
   "name": "custom-x",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A library to facilitate the storage of javascript objects in Custom XML Parts.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,6 +15,10 @@
     "type": "git",
     "url": "git+https://github.com/drittich/custom-x.git"
   },
+  "bugs": {
+    "url": "https://github.com/drittich/custom-x/issues"
+  },
+  "homepage": "https://github.com/drittich/custom-x#readme",
   "keywords": [
     "add-in",
     "customxml",
